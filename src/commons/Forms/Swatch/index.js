@@ -81,8 +81,8 @@ const Swatch = ({
             role="button"
             className={cx(
                 'swift-swatcher-text',
-                !disabled ? (checked ? 'border-primary-700 text-primary-700 bg-primary-50' : 'border-neutral-200 text-neutral-700') : '',
-                !disabled ? 'hover:border-primary-700 hover:text-primary-700 hover:bg-primary-50' : '',
+                !disabled ? (checked ? 'border-neutral-200 text-neutral-400 bg-primary-50' : 'border-neutral-200 text-neutral-700') : '',
+                !disabled ? 'hover:neutral-200 hover:text-neutral-400 hover:bg-primary-50' : '',
                 disabled && 'bg-neutral-50 border-neutral-200 text-neutral-200',
                 'text-base',
                 'swatches-text',

@@ -65,6 +65,7 @@ const Detail = (props) => {
                             isGrid && 'text-[14px] tablet:text-[16px]',
                             !isGrid && 'text-sm tablet:text-[16px]',
                             'leading-lg tablet:leading-2lg',
+                            'desktop:min-h-[48px]',
                         )}
                     >
                         {parser(name)}

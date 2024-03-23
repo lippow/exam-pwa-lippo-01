@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable eqeqeq */
 import { debuging, modules } from '@config';
 import { getLoginInfo } from '@helper_auth';
@@ -537,7 +538,11 @@ const ProductItem = (props) => {
                         ) : null}
                         {isOos && (
                             <div className={classNames('absolute top-2 tablet:top-3 left-2 tablet:left-3 z-10')}>
-                                <Badge bold label={stockStatus.replace(/_/g, ' ')} className="!bg-neutral text-white !text-xs tablet:!text-sm" />
+                                <Badge
+                                    bold
+                                    label={stockStatus.replace(/_/g, ' ')}
+                                    className="!bg-neutral-50 !text-neutral-400 !text-xs tablet:!text-sm"
+                                />
                             </div>
                         )}
                         {showQuickView && (
@@ -553,7 +558,7 @@ const ProductItem = (props) => {
                                         'desktop:group-hover:visible',
                                         'absolute px-3 py-2',
                                         'left-1/2 bottom-4 -translate-x-1/2 z-[2] w-32',
-                                        'swift-quickview-button',
+                                        'swift-quickview-button hidden mb-[40px]',
                                     )}
                                     size="sm"
                                 >
@@ -579,6 +584,49 @@ const ProductItem = (props) => {
                                 />
                             </>
                         )}
+                        <Show when={showWishlist || showProductCompare}>
+                            <div className="flex-row gap-4 absolute left-1/2 bottom-4 -translate-x-1/2 z-[2] invisible desktop:group-hover:visible">
+                                <Show when={showWishlist && !usedInWishlist}>
+                                    <Button
+                                        iconOnly
+                                        icon={<HeartIcon />}
+                                        iconProps={{ className: feed ? '!w-4 !h-4 text-neutral-800' : '!w-4 !h-4 group-hover:text-neutral-800' }}
+                                        variant={feed ? 'primary' : 'outlined'}
+                                        onClick={() => handleFeed(props)}
+                                        className={classNames(
+                                            'swift-action-towishlist !p-[10px] !border-neutral-200 hover:bg-neutral-50 group',
+                                            'hover:!shadow-none focus:!shadow-none hover:!opacity-100 mr-2',
+                                        )}
+                                    />
+                                </Show>
+                                <Show when={usedInWishlist}>
+                                    <Button
+                                        iconOnly
+                                        icon={<TrashIcon />}
+                                        iconProps={{ className: '!w-4 !h-4 group-hover:text-neutral-800 text-primary' }}
+                                        variant="outlined"
+                                        onClick={() => handlingRemove()}
+                                        className={classNames(
+                                            'swift-action-toremove !p-[10px] !border-neutral-200 hover:bg-neutral-50 group',
+                                            'hover:!shadow-none focus:!shadow-none hover:!opacity-100',
+                                        )}
+                                    />
+                                </Show>
+                                <Show when={showProductCompare}>
+                                    <Button
+                                        iconOnly
+                                        icon={<CompareIcon />}
+                                        iconProps={{ className: '!w-4 !h-4 group-hover:text-neutral-800' }}
+                                        variant="outlined"
+                                        onClick={() => handleSetCompareList(props?.id)}
+                                        className={classNames(
+                                            'swift-action-tocompare !p-[10px] !border-neutral-200 hover:bg-neutral-50 group',
+                                            'hover:!shadow-none focus:!shadow-none hover:!opacity-100',
+                                        )}
+                                    />
+                                </Show>
+                            </div>
+                        </Show>
                         <Show when={enableImage}>
                             <ImageProductView
                                 t={t}
@@ -683,7 +731,11 @@ const ProductItem = (props) => {
                         ) : null}
                         {isOos && (
                             <div className="absolute top-2 tablet:top-3 left-2 tablet:left-3 z-10">
-                                <Badge bold label={stockStatus.replace(/_/g, ' ')} className="!bg-neutral text-white !text-xs tablet:!text-sm" />
+                                <Badge
+                                    bold
+                                    label={stockStatus.replace(/_/g, ' ')}
+                                    className="!bg-neutral-50 !text-neutral-400 !text-xs tablet:!text-sm"
+                                />
                             </div>
                         )}
                         {showQuickView && (
